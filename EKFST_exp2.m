@@ -196,22 +196,6 @@ ylabel('e_\theta_7');
 %final parameter estimate
 disp(arr_x_u(4:end,end));
 
-%observability
-O = H;
-arr_r = zeros(1,0);
-for ii = 1:10:size(arr_F,3)
-    F = arr_F(:,:,ii);
-    O = [O;H*F];
-    r = rank(O);
-    arr_r(end+1) = r;
-end
-figure;
-plot(linspace(0,t_out(end),length(arr_r)),arr_r,'color',[0,0,1],'lineWidth',1.5);
-xlim([0,0.5]);
-ylim([2,10.2]);
-xlabel('Time (s)');
-ylabel('rank(O)');
-
 %% functions
 function X_dot = lorenzEqs(t,X,params_sys,w)
     sigma = params_sys.sigma;
